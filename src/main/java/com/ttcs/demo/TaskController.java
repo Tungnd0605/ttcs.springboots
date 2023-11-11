@@ -1,8 +1,8 @@
 package com.ttcs.demo;
 
 import java.util.List;
+import java.util.Optional;
 
-import org.apache.el.stream.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/tasks")
 @CrossOrigin(origins="http://localhost:4200")
 public class TaskController {
+
     @Autowired
     private TaskService taskService;
 
@@ -23,7 +24,7 @@ public class TaskController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Task> getTaskById(@PathVariable Long id) {
-        java.util.Optional<Task> task = taskService.getTaskById(id);
+        Optional<Task> task = taskService.getTaskById(id);
         return task.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }

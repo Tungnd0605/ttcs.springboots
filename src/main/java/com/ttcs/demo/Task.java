@@ -3,7 +3,8 @@ package com.ttcs.demo;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import java.time.LocalDateTime;
+
+import java.time.LocalDate;
 
 @Entity
 @Table
@@ -22,10 +23,11 @@ public class Task {
     private String description;
 
     @CreationTimestamp
-    private LocalDateTime startedDate;
+    private LocalDate startedDate;
 
     @NonNull
-    private LocalDateTime dueDate;
+    private LocalDate dueDate;
 
-    private boolean isCompleted = false;
+    @NonNull
+    private Boolean completed;
 }
